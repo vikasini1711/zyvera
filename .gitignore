@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+.env.local
+
+# Build Files
+dist/
+build/
+
+# Logs
+logs
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Frontend & Backend Dependencies
+frontend/node_modules/
+backend/node_modules/
+
+# Coverage Reports
+coverage/
