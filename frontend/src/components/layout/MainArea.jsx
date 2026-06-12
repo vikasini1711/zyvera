@@ -13,13 +13,14 @@ const MainArea = ({ view, songs }) => {
     <div className="mainarea-root">
       <div className="mainarea-top">
         <Auth />
+
         {view === "home" && <Playlist />}
         {view === "search" && <SearchBar />}
       </div>
 
       <div className="mainarea-scroll">
-        {(view === "home" || view === "search") && <SongList songs={songs} />}
-
+        {view === "home" && <SongList songs={songs} />}
+        {view === "search" && <SongList songs={songs} />}
         {view === "favourite" && <SongGrid songs={songs} />}
       </div>
     </div>
