@@ -13,10 +13,13 @@ app.use(express.json());
 //connect your Database
 connectDB();
 app.use(cors({
-    origin: "http://localhost:5173",
-    credentials:true,
-})
-);
+    origin: [
+        "http://localhost:5173",
+        "https://https://zyvera-frontend.onrender.com"
+    ],
+    credentials: true,
+}));
+
 app.use("/api/songs",songRouter);
 app.use("/api/auth", router);
 
