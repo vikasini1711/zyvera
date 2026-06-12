@@ -6,9 +6,9 @@ import Features from "../player/Features";
 
 import "../../css/footer/Footer.css";
 
-const Footer = () => {
+const Footer = ({playerState,playerControls,playerFeatures}) => {
   // static player state (dummy)
-  const playerState = {
+ /* const playerState = {
     currentSong: {
       name: "Believer",
       artist_name: "Imagine Dragons",
@@ -19,13 +19,13 @@ const Footer = () => {
     currentTime: 0,
     duration: 0,
     volume: 50,
-  };
+  };*/
 
   return (
     <footer className="footer-root footer-glow">
       <SongDetail currentSong={playerState.currentSong} />
-      <ControlArea playerState={playerState} />
-      <Features playerState={playerState} />
+      <ControlArea playerState={playerState} playerControls={playerControls}/>
+      <Features playerState={playerState} playerFeatures={playerFeatures}/>
     </footer>
   );
 };

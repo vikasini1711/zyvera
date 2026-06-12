@@ -5,8 +5,33 @@ import logo from "../../assets/wsa-logo.jpg";
 import "../../css/sidemenu/SideMenu.css";
 import { CiUser } from "react-icons/ci";
 import { AiOutlineHome, AiOutlineSearch, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { openAuthModal } from "../../redux/slices/uiSlices";
 
-const SideMenu = ({ setView, view }) => {
+const SideMenu = ({ setView, view ,onOpenEditProfile}) => {
+  const dispatch=useDispatch();
+  const {user,isAuthenticated}=useSelector((state)=>state.auth);
+
+  const displayUser = {
+    name:user?.name || "Guest",
+    avatar:user?.avatar || "",
+  };
+
+  const handleSearchClick = () => {
+    if(!isAuthenticated){
+      dispatch(openAuthModal("login"));
+      return;
+    }
+    setView("search");
+  };
+   const handleFavouriteClick = () => {
+    if(!isAuthenticated){
+      dispatch(openAuthModal("login"));
+      return;
+    }
+    setView("favourite");
+  };
+
   const getNavBtnClass = (item) =>
     `sidemenu-nav-btn ${view === item ? "active" : ""}`;
   return (
@@ -15,7 +40,7 @@ const SideMenu = ({ setView, view }) => {
         {/* Logo */}
         <div className="sidemenu-header">
           <img src={logo} alt="wsa-logo" className="sidemenu-logo-img" />
-          <h2 className="sidemenu-logo-title">Synthesia</h2>
+          <h2 className="sidemenu-logo-title">Zyvera</h2>
         </div>
         {/* Navigation */}
         <nav className="sidemenu-nav" aria-label="Main navigation">
@@ -31,7 +56,7 @@ const SideMenu = ({ setView, view }) => {
             </li>
             <li>
               <button
-                onClick={() => setView("search")}
+                onClick={handleSearchClick}
                 className={getNavBtnClass("search")}
               >
                 <AiOutlineSearch className="sidemenu-nav-icon" size={18} />
@@ -41,7 +66,7 @@ const SideMenu = ({ setView, view }) => {
             <li>
               <button
                 className={getNavBtnClass("favourite")}
-                onClick={() => setView("favourite")}
+                onClick={handleFavouriteClick}
               >
                 <AiOutlineHeart size={18} />
                 <span>Favourite</span>
@@ -57,13 +82,16 @@ const SideMenu = ({ setView, view }) => {
           </div>
 
           <div className="sidemenu-username-wrapper">
-            <div className="sidemenu-username">Guest</div>
+            <div className="sidemenu-username">{displayUser.name}</div>
           </div>
+          {isAuthenticated &&(
           <div className="settings-container">
-            <button type="button" className="sidemenu-settings-btn">
+            <button type="button" className="sidemenu-settings-btn"
+            onClick={onOpenEditProfile}>
               <IoIosSettings size={20} />
             </button>
           </div>
+          )}
         </div>
       </aside>
     </>

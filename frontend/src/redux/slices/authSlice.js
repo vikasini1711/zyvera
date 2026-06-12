@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState ={
     user:null,
     token:localStorage.getItem("token") || null,
-    isAuthenticated:false,
+    isAuthenticated:!!localStorage.getItem("token"),
     isLoading:false,
     error:null,
 };
@@ -16,13 +16,12 @@ const initialState ={
             state.isLoading=action.payload;
             state.error=null;
         },
-
-        //set user after successfull login/register/fetchUser
+         //set user after successfull login/register/fetchUser
         //also stores token in localstorage for persistance
 
         setUser:(state,action)=>{
             state.user=action.payload.user;
-            state.token=action.payload.token;
+             state.token=action.payload.token || state.token;
             state.isAuthenticated=true;
             state.isLoading=false;
             state.error=null;
@@ -45,7 +44,7 @@ const initialState ={
         },
 
         updateFavourites:(state,action) => {
-            if(state.error){
+            if(state.user && Array.isArray(action.payload)){
                 state.user.favourites=action.payload;
 
             }
@@ -66,3 +65,6 @@ const initialState ={
 }=authSlice.actions;
 
 export default authSlice.reducer;
+        
+
+ 
