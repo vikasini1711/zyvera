@@ -15,7 +15,7 @@ connectDB();
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://https://zyvera-frontend.onrender.com"
+        "https://zyvera-frontend.onrender.com"
     ],
     credentials: true,
 }));
