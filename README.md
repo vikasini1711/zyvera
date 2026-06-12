@@ -136,7 +136,7 @@ fullstack-music-player
 ### Clone Repository
 
 ```bash
-git clone https://github.com/vikasini1711/fullstack-music-player.git
+git clone https://github.com/vikasini1711/zyvera.git
 ```
 
 ### Backend Setup
