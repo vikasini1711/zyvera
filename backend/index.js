@@ -4,7 +4,7 @@ import cors from "cors";
 import connectDB from "./config/connectDB.js";
 import router from "./routes/authRoutes.js";
 import songRouter from "./routes/songRoutes.js";
-dotenv.config(".env");
+dotenv.config();
 const PORT=process.env.PORT || 5001;
 
 const app =express();
